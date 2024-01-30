@@ -5,13 +5,15 @@ public class Books {
     private String title;
     private String writer;
     private BookCategory category;
+    private double price;
 
 
-    public Books(int id, String title, String writer, BookCategory category) {
+    public Books(int id, String title, String writer, BookCategory category, double price) {
         this.id = id;
         this.title = title;
         this.writer = writer;
         this.category = category;
+        this.price = price;
     }
 
     public int getId() {
@@ -28,5 +30,9 @@ public class Books {
 
     public BookCategory getCategory() {
         return category;
+    }
+
+    public double getPrice() {
+        return price;
     }
 }
