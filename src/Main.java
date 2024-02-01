@@ -94,7 +94,7 @@ public class Main {
         }
 
 
-        //ÖGRENCİ EKLEDİM ÖGRENCİ LİSTESİ OLUTURDUM
+        //ÖGRENCİ EKLEDİM ÖGRENCİ LİSTESİ OLUSTURDUM
 
         Students student1 = new Students(100, "Ali", StudentType.LICENCE);
         Students student2 = new Students(201, "Emre", StudentType.MASTER);
