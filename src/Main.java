@@ -8,9 +8,41 @@ import com.Workintech.Library.Students.Students;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+
+        Library library = new Library();
+
+        // Oğrenci olusumu
+        Students student = new Students(101, "Ali", StudentType.MASTER);
+
+
+        library.initializeLibraryWithBooks();
+        library.addStudent(student);
+
+        library.showBookList();
+
+        // Hangi kitabı ?
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Öğrenci tipini seçin (1-Master, 2-Licence): ");
+        int studentTypeChoice = scanner.nextInt();
+        StudentType selectedStudentType = (studentTypeChoice == 1) ? StudentType.MASTER : StudentType.LICENCE;
+
+        System.out.print("Hangi kitabı almak istediğinizi belirtin (Kitap ID): ");
+        int selectedBookId = scanner.nextInt();
+
+        // Kitabı Öğrenciye Ekleme -- hocaya sor ?
+        Books selectedBook = library.searchBookById(selectedBookId);
+        if (selectedBook != null) {
+            student.addBookToStudent(selectedBook);
+        } else {
+            System.out.println("Kitap bulunamadı.");
+        }
+
+
 
         Map<Integer, Books> bookMap = new HashMap<>();
 
@@ -36,7 +68,7 @@ public class Main {
 
         //KITAP IDsine ve TİTLE GÖRE ARAMA YAPTIM
 
-        Library library = new Library();
+      // Burada scanner ? olmalı mı nasıl olur..
 
         for (Books b : bookMap.values()) {
             library.addBook(b);
@@ -73,12 +105,6 @@ public class Main {
         library.addStudent(student2);
         library.addStudent(student3);
         library.addStudent(student4);
-
-        List<Students> studentList = library.getStudents();
-        for (Students student : studentList) {
-            System.out.println("Student No: " + student.getStudentNo() + ", Name: " + student.getName() + ", StudentType: " + student.getStudentType());
-        }
-
 
 
     }

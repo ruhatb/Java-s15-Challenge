@@ -15,5 +15,7 @@ public interface LibraryAble {
     Books searchBookByTitle(String title);
 
     void showBookStatus();
+    public void showBookList();
 
+    public void initializeLibraryWithBooks();
 }
