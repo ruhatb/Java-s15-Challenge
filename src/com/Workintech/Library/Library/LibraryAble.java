@@ -14,4 +14,6 @@ public interface LibraryAble {
     Books searchBookById(int bookId);
     Books searchBookByTitle(String title);
 
+    void showBookStatus();
+
 }

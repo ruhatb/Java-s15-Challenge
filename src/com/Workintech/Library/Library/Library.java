@@ -2,6 +2,7 @@ package com.Workintech.Library.Library;
 
 import com.Workintech.Library.Books.BookCategory;
 import com.Workintech.Library.Books.Books;
+import com.Workintech.Library.Students.StudentType;
 import com.Workintech.Library.Students.Students;
 
 import java.util.ArrayList;
@@ -12,9 +13,20 @@ public class Library implements LibraryAble{
     private List<Books> bookList;
     private List<Students> studentList;
 
+    private Map<Integer, Integer> rentedBooks;
+
     public Library() {
         this.bookList = new ArrayList<>();
         this.studentList = new ArrayList<>();
+    }
+
+    private Students getStudentByNo(int studentNo) {
+        for (Students student : studentList) {
+            if (student.getStudentNo() == studentNo) {
+                return student;
+            }
+        }
+        return null;
     }
 
 
@@ -31,6 +43,11 @@ public class Library implements LibraryAble{
     @Override
     public List<Books> getBooks() {
         return new ArrayList<>(bookList);
+    }
+
+    @Override
+    public Map<BookCategory, Double> calculateRent() {
+        return null;
     }
 
     @Override
@@ -53,17 +70,44 @@ public class Library implements LibraryAble{
         }
         return null;
     }
-    @Override
-    public Map<BookCategory, Double> calculateRent() {
-        Map<BookCategory, Double> feesMap = new HashMap<>();
 
-        for (Books book : bookList) {
-            BookCategory category = book.getCategory();
-            double currentFee = feesMap.getOrDefault(category, 0.0);
-            feesMap.put(category, currentFee + calculateFeeForBook(book));
+    @Override
+    public void showBookStatus() {
+        for (Map.Entry<Integer, Integer> entry : rentedBooks.entrySet()) {
+            int bookId = entry.getKey();
+            int studentNo = entry.getValue();
+
+            Books book = searchBookById(bookId);
+            Students student = getStudentByNo(studentNo);
+
+            if (book != null && student != null) {
+                System.out.println("Kitap (" + book.getTitle() + ") " +
+                        "ID: " + book.getId() +
+                        " öğrenci (" + student.getName() +
+                        " - Student No: " + student.getStudentNo() +
+                        ") tarafından alınmıştır. Fiyatı: " + book.getPrice());
+            }
+        }
+    }
+
+    public  double calculateRentalFee(int studentNo, int bookId) {
+        Students student = findStudent(studentNo);
+        Books book = searchBookById(bookId);
+
+        if (student != null && book != null) {
+            double baseFee = book.getPrice();
+
+            double rentalFee;
+            if (student.getStudentType() == StudentType.MASTER) {
+                rentalFee = student.calculateRentalFee(baseFee * 1.2);
+            } else {
+                rentalFee = student.calculateRentalFee(baseFee);
+            }
+
+            return rentalFee;
         }
 
-        return feesMap;
+        return -1;
     }
 
     private double calculateFeeForBook(Books book) {
@@ -82,5 +126,9 @@ public class Library implements LibraryAble{
             }
         }
         return null;
+    }
+
+    public List<Students> getStudents() {
+        return new ArrayList<>(studentList);
     }
 }

@@ -1,9 +1,16 @@
 package com.Workintech.Library.Students;
 
-public class Students {
+import com.Workintech.Library.Books.Books;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Students implements StudentAble {
     private int studentNo;
     private String name;
     private StudentType studentType;
+
+    private List<Books> books;
 
     public Students(int studentNo, String name, StudentType studentType) {
         this.studentNo = studentNo;
@@ -27,7 +34,5 @@ public class Students {
         return (studentType == StudentType.MASTER) ? 1.5 * baseFee : baseFee;
     }
 
-    public String whoGet() {
-        return name + " (" + studentType + ")";
-    }
+
 }

@@ -15,21 +15,26 @@ public class Main {
         Map<Integer, Books> bookMap = new HashMap<>();
 
 
-        Books book = new Books(1, "Java Programming", "Yazar1", BookCategory.ACADEMIC);
+        // KITAP OLUSTURUP EKLEDİM
+
+        Books book = new Books(1, "Java Programming", "Yazar1", BookCategory.ACADEMIC,15);
         for (int i = 1; i <= 5; i++) {
             bookMap.put(i, book);
         }
         for (int i = 31; i <= 36; i++) {
-            bookMap.put(i, new Books(i, "Academic" + i, "Yazar" + i, BookCategory.ACADEMIC));
+            bookMap.put(i, new Books(i, "Academic" + i, "Yazar" + i, BookCategory.ACADEMIC,15));
         }
 
         for (int i = 6; i <= 20; i++) {
-            bookMap.put(i, new Books(i, "Novel" + i, "Yazar" + i, BookCategory.NOVELS));
+            bookMap.put(i, new Books(i, "Novel" + i, "Yazar" + i, BookCategory.NOVELS,20));
         }
 
         for (int i = 21; i <= 30; i++) {
-            bookMap.put(i, new Books(i, "History" + i, "Yazar" + i, BookCategory.HISTORY));
+            bookMap.put(i, new Books(i, "History" + i, "Yazar" + i, BookCategory.HISTORY,25));
         }
+
+
+        //KITAP IDsine ve TİTLE GÖRE ARAMA YAPTIM
 
         Library library = new Library();
 
@@ -57,11 +62,24 @@ public class Main {
         }
 
 
-        Students licenceStudent = new Students(100, "Ali", StudentType.LICENCE);
-        library.addStudent(licenceStudent);
+        //ÖGRENCİ EKLEDİM ÖGRENCİ LİSTESİ OLUTURDUM
 
-        Students masterStudent = new Students(201, "Emre", StudentType.MASTER);
-        library.addStudent(masterStudent);
+        Students student1 = new Students(100, "Ali", StudentType.LICENCE);
+        Students student2 = new Students(201, "Emre", StudentType.MASTER);
+        Students student3 = new Students(105, "Ahmet", StudentType.LICENCE);
+        Students student4 = new Students(205, "Sevgi", StudentType.MASTER);
+
+        library.addStudent(student1);
+        library.addStudent(student2);
+        library.addStudent(student3);
+        library.addStudent(student4);
+
+        List<Students> studentList = library.getStudents();
+        for (Students student : studentList) {
+            System.out.println("Student No: " + student.getStudentNo() + ", Name: " + student.getName() + ", StudentType: " + student.getStudentType());
+        }
+
+
 
     }
 }
