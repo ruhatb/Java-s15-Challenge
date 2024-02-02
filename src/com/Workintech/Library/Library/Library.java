@@ -106,7 +106,7 @@ public class Library implements LibraryAble{
     }
 
 
-
+//hem burda hem mainde kitap ekledim..?
     @Override
     public void initializeLibraryWithBooks() {
         // Mainde mi eklemelyim Burdaki gibi mi Hocaya sor.. ?
@@ -115,6 +115,7 @@ public class Library implements LibraryAble{
         Books book3 = new Books(3, "Book3", "Writer3", BookCategory.NOVELS, 20.0);
         Books book4 = new Books(4, "Book4", "Writer4", BookCategory.HISTORY, 12.0);
         Books book5 = new Books(5, "Book5", "Writer5", BookCategory.NOVELS, 18.0);
+        Books book6 = new Books(6, "Book6", "Writer6", BookCategory.NOVELS, 18.0);
 
         addBook(book1);
         addBook(book2);

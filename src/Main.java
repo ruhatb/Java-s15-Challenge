@@ -5,15 +5,13 @@ import com.Workintech.Library.Library.Library;
 import com.Workintech.Library.Students.StudentType;
 import com.Workintech.Library.Students.Students;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-
+//new ArrayList<>(), new HashMap<>(), new HashMap<>() bunu  librarye yazmalımıyız ? hata veriyor library2 için
         Library library = new Library();
+        Library library2 = new Library();
 
         // Oğrenci olusumu
         Students student = new Students(101, "Ali", StudentType.MASTER);
@@ -68,8 +66,8 @@ public class Main {
 
         //KITAP IDsine ve TİTLE GÖRE ARAMA YAPTIM
 
-      // Burada scanner ? olmalı mı nasıl olur..
-
+      // Burada scanner ? olmalı mı nasıl olur.. liste burda deneme amaclı ..
+        System.out.println("****************************************************************************");
         for (Books b : bookMap.values()) {
             library.addBook(b);
         }
@@ -93,6 +91,24 @@ public class Main {
             System.out.println("Kitap bulunamadı.");
         }
 
+        System.out.println("******************************************************");
+
+
+        library2.initializeLibraryWithBooks();
+
+        System.out.print("Aramak istediğiniz kitabın ID'sini girin: ");
+        int searchBookId = scanner.nextInt();
+        Books foundBook = library2.searchBookById(searchBookId);
+        if (foundBook != null) {
+            System.out.println("Aranan kitap bulundu: " + foundBook.getTitle() +
+                    " - Yazar: " + foundBook.getWriter() +
+                    " - Kategori: " + foundBook.getCategory());
+        } else {
+            System.out.println("Kitap bulunamadı.");
+        }
+
+
+        System.out.println("********************************************************");
 
         //ÖGRENCİ EKLEDİM ÖGRENCİ LİSTESİ OLUSTURDUM
 
